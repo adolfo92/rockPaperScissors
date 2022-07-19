@@ -1,74 +1,92 @@
-//Funcion: usuario elige opcion
-    //Pedir opcion a jugador
-    //Retorna opcion del usuario
+function userOption(){
+let userInput = prompt("Pleaser write your option: Rock, paper or scissors?");
+return userInput.toLowerCase();
+}
 
-//Funcion: computadora elige opcion
+function computerOption(){
+    let option = Math.floor(Math.random()*3 +1);
 
-    //Genera numero random del 1 al 3
+    if(option == 1) {return "rock"};
+    if(option == 2) {return "paper"};
+    if(option == 3) {return "scissors"};
 
-        //Si 1 ===> Piedra
+}
 
-        //Si 2 ===> Papel
+function oneRound(playerInput,computerInput){
 
-        //Si 2 ===> Tijera
+    let player = playerInput;
 
-    //Retorna opcion de computadora
+    let computer=computerInput;
 
-//Funcion: usuario VS computadora una ronda(Opcion Jugador, opcion Computadora)
+    let playerWins=false;
 
-    // Jugador gana = Falso
+    console.log("You choose "+playerInput);
+    console.log("Computer choose "+computerInput);
 
-    //Si jugador == tijeras Y compu ==papel
-        // Jugador gana = Cierto
-        // Escribe: "Ganaste Opcion Jugador corta Opcion computadora "
+    if (player === computer){
+        console.log("Draw");
+        return null;
+    }
 
-    //Si jugador == papel Y compu ==piedra
+    else if(player==="scissors" && computer === "paper"){
+        console.log("You won, "+player+" cuts "+computer);
+        playerWins=true;
+    }
 
-        // Jugador gana = Cierto
-        // Escribe: "Ganaste Opcion Jugador envuelve Opcion computadora "
+    else if(player==="paper" && computer === "rock"){
+        console.log("You won, "+player+" wraps "+computer);
+        playerWins=true;
+    }
 
-    //Si jugador == piedra y compu == tijeras
+    else if(player==="rock" && computer === "scissors"){
+        console.log("You won, "+player+" smash "+computer);
+        playerWins=true;
+    }
 
-        // Jugador gana = Cierto
-        // Escribe: "Ganaste Opcion Jugador aplasta Opcion computadora "
+    else{
+        console.log("You lose");
+    }
 
-    //Else 
-        // Escribe: "Perdiste Opcion Jugador corta Opcion computadora "
+    return playerWins;
 
-    //Retorna Jugador gana : True / False
+}
 
-// Funcion: Juego
+function game(){
 
-    //Ronda = 0
+    let win = 0;
+    let defeat = 0;
 
-    // Mientras haya menos de 5 rondas:
+    for(round = 0; round <5; round++){
 
-        // Juega una partida
+       let winning = oneRound(userOption(),computerOption());
 
-            //Ronda + 1
+        if (winning === true){ win++;}
+        if (winning === false){defeat++;}
+        console.log("wins: "+win+" / defeats: "+defeat);
+    }
 
-            //Si jugador gana
-                //Victoria + 1
-            //Else
-                //Derrota + 1
-        
-        // Si victoria > derrotas:
+    if (win>defeat){console.log("Congratz, you won the game");}
+    if (win<defeat){console.log("You died");}
+    if (win==defeat){console.log("Somehow you got the same answers than the pc. I guess that's a draw.");}
 
-            //Escribe Felicidades, has ganado
-        //Else 
-            //Has sido derrotado
+    console.log("End of game");
     
+}
 
-//Escribe: Quieres jugar mi juego? 
-//Preguntar al usuario si/no
-//Almacenar opcion de usuario
+//------------- Execution zone ------------------
 
-//Si opcion de usuario es si
-    //Juego()
+console.log("Do you wanna play my game?");
 
-    // ¿Probar de nuevo? si/no
-        //Si opcion de usuario es no
-            //Almacenar opcion de usuario
-            //Escribe, gracias por jugar mi juego
+playQuestion = prompt("Do you wanna play my game?  y/n").toLowerCase();
+
+while (playQuestion=="y"){
+
+    game();
+
+    playQuestion = prompt("Try again? y/n").toLowerCase();
+
+}
+
+console.log("thanks for playing my game <3");
 
 
