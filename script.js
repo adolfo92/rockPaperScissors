@@ -1,8 +1,3 @@
-function userOption(){
-let userInput = prompt("Pleaser write your option: Rock, paper or scissors?");
-return userInput.toLowerCase();
-}
-
 function computerOption(){
     let option = Math.floor(Math.random()*3 +1);
 
@@ -56,6 +51,8 @@ function game(){
     let win = 0;
     let defeat = 0;
 
+    
+
     //for(round = 0; round <5; round++){
         // Aca esta la logica de solo 5 partidas      
    // }
@@ -63,7 +60,7 @@ function game(){
    // 5partidas in
 
 
-    let winning = oneRound(userOption(),computerOption());
+    let winning = oneRound(userOption,computerOption());
 
     if (winning === true){ win++;}
     if (winning === false){defeat++;}
@@ -82,18 +79,14 @@ function game(){
 
 //------------- Execution zone ------------------
 
-console.log("Do you wanna play my game?");
 
-playQuestion = prompt("Do you wanna play my game?  y/n").toLowerCase();
+const buttons = document.querySelectorAll(".selection");
 
-while (playQuestion=="y"){
+buttons.forEach(button => {
+        button.addEventListener('click',function(){
+            oneRound(button.id,computerOption())
+        });
+    
+});
 
-    game();
-
-    playQuestion = prompt("Try again? y/n").toLowerCase();
-
-}
-
-console.log("thanks for playing my game <3");
-
-
+//----------- DOM para resultados -------------------

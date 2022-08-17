@@ -1,0 +1,3 @@
+Usuario hace click en boton
+    el boton retorna la clase
+    la clase define la seleccion
