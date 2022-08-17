@@ -51,19 +51,26 @@ function oneRound(playerInput,computerInput){
 
 }
 
-function game(){
+function game(){ 
 
     let win = 0;
     let defeat = 0;
 
-    for(round = 0; round <5; round++){
+    //for(round = 0; round <5; round++){
+        // Aca esta la logica de solo 5 partidas      
+   // }
 
-       let winning = oneRound(userOption(),computerOption());
+   // 5partidas in
 
-        if (winning === true){ win++;}
-        if (winning === false){defeat++;}
-        console.log("wins: "+win+" / defeats: "+defeat);
-    }
+
+    let winning = oneRound(userOption(),computerOption());
+
+    if (winning === true){ win++;}
+    if (winning === false){defeat++;}
+    
+    console.log("wins: "+win+" / defeats: "+defeat);
+    // 5partidas out
+
 
     if (win>defeat){console.log("Congratz, you won the game");}
     if (win<defeat){console.log("You died");}
