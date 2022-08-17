@@ -7,7 +7,29 @@ function computerOption(){
 
 }
 
+function creaParrafo(parentNode,contenido){
+    const nuevoParrafo = document.createElement("p");
+    parentNode.appendChild(nuevoParrafo);
+    nuevoParrafo.textContent=contenido;
+}
+
+function reseteaParrafo(parentNode){
+
+    console.log(parentNode.hasChildNodes());
+
+    
+
+    while(parentNode.hasChildNodes()){
+        parentNode.removeChild(parentNode.firstChild);
+    }
+    return
+    
+
+}
+
 function oneRound(playerInput,computerInput){
+    
+    reseteaParrafo(divResultados);
 
     let player = playerInput;
 
@@ -15,30 +37,35 @@ function oneRound(playerInput,computerInput){
 
     let playerWins=false;
 
-    console.log("You choose "+playerInput);
-    console.log("Computer choose "+computerInput);
+    creaParrafo(divResultados,`You choose "${playerInput}"`);
+    creaParrafo(divResultados,`Computer choose "${computerInput}"`);
+
 
     if (player === computer){
-        console.log("Draw");
+        creaParrafo(divResultados,"Draw, you both choose the same");
+    
         return null;
     }
 
     else if(player==="scissors" && computer === "paper"){
-        console.log("You won, "+player+" cuts "+computer);
+        creaParrafo(divResultados,`You won, ${playerInput} cuts ${computerInput}`);
         playerWins=true;
     }
 
     else if(player==="paper" && computer === "rock"){
-        console.log("You won, "+player+" wraps "+computer);
+        creaParrafo(divResultados,`You won, ${playerInput} wraps ${computerInput}`);
+        
         playerWins=true;
     }
 
     else if(player==="rock" && computer === "scissors"){
-        console.log("You won, "+player+" smash "+computer);
+        creaParrafo(divResultados,`You won, ${playerInput} smash ${computerInput}`);
+
         playerWins=true;
     }
 
     else{
+        creaParrafo(divResultados,`You lose.`);
         console.log("You lose");
     }
 
@@ -78,7 +105,7 @@ function game(){
 }
 
 //------------- Execution zone ------------------
-
+const divResultados = document.querySelector(".results");
 
 const buttons = document.querySelectorAll(".selection");
 
@@ -90,3 +117,9 @@ buttons.forEach(button => {
 });
 
 //----------- DOM para resultados -------------------
+
+
+
+
+
+
