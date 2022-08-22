@@ -1,3 +1,14 @@
-Usuario hace click en boton
-    el boton retorna la clase
-    la clase define la seleccion
+Los botones desatan un evento
+
+Presiono boton
+
+Boton juega una partida
+/////
+Registra cuantas partidas lleva
+////
+Registra victoria o derrota y almacena
+///
+muestra en la pantalla el score
+///
+Solo juega 5 rondas
+

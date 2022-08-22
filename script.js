@@ -14,10 +14,7 @@ function creaParrafo(parentNode,contenido){
 }
 
 function reseteaParrafo(parentNode){
-
-    console.log(parentNode.hasChildNodes());
-
-    
+   
 
     while(parentNode.hasChildNodes()){
         parentNode.removeChild(parentNode.firstChild);
@@ -66,60 +63,69 @@ function oneRound(playerInput,computerInput){
 
     else{
         creaParrafo(divResultados,`You lose.`);
-        console.log("You lose");
+        
     }
 
     return playerWins;
 
 }
 
-function game(){ 
-
-    let win = 0;
-    let defeat = 0;
-
-    
-
-    //for(round = 0; round <5; round++){
-        // Aca esta la logica de solo 5 partidas      
-   // }
-
-   // 5partidas in
-
-
-    let winning = oneRound(userOption,computerOption());
-
-    if (winning === true){ win++;}
-    if (winning === false){defeat++;}
-    
-    console.log("wins: "+win+" / defeats: "+defeat);
-    // 5partidas out
-
-
-    if (win>defeat){console.log("Congratz, you won the game");}
-    if (win<defeat){console.log("You died");}
-    if (win==defeat){console.log("Somehow you got the same answers than the pc. I guess that's a draw.");}
-
-    console.log("End of game");
-    
-}
 
 //------------- Execution zone ------------------
 const divResultados = document.querySelector(".results");
 
 const buttons = document.querySelectorAll(".selection");
 
+let winning;
+let rounds = 0;
+let win = 0;
+let defeat = 0;
+
+if (rounds <5){
+
 buttons.forEach(button => {
+
         button.addEventListener('click',function(){
-            oneRound(button.id,computerOption())
+            
+            
+
+            winning = oneRound(button.id,computerOption())
+
+            if (rounds==4){
+                reseteaParrafo(divResultados);
+                if (win>defeat){creaParrafo(divResultados,`Congratz, you won the game`);}
+                if (win<defeat){creaParrafo(divResultados,`Congratz, you Died`);}
+                if (win==defeat){creaParrafo(divResultados,`Somehow you got the same answers than the pc. I guess that's a draw.`);}
+                creaParrafo(divResultados,"End of game");
+                creaParrafo(divResultados,`Wins: ${win} /  Defeats: ${defeat} `);
+                creaParrafo(divResultados,`Round: ${++rounds}`);
+                rounds = 0;
+                win =0;
+                defeat = 0;
+                return;
+            }
+           
+            if (winning === true){ win++;}
+
+            if (winning === false){defeat++;}
+
+            creaParrafo(divResultados,`Wins: ${win} /  Defeats: ${defeat} `)
+
+            rounds++;
+
+            creaParrafo(divResultados,`Round: ${rounds}`);
+                    
+
         });
     
 });
 
+
+}
 //----------- DOM para resultados -------------------
 
 
-
+//
 
 
 
